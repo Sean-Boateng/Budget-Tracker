@@ -5,7 +5,9 @@ import useAuth from "../../hooks/useAuth";
 import { useNavigate } from 'react-router-dom';
 import Sidebar from '../SideBar/sidebar';
 import ExpenseList from '../Expenses/ExpenseList';
+import AddExpenses from '../Expenses/AddExpenses';
 import AddProject from '../Add Project/AddProject';
+
 
 
 const LandingPage = (props) => {
@@ -42,6 +44,24 @@ const LandingPage = (props) => {
         }
       };
 
+
+
+      async function addProject (newEntry){
+        try {
+          let response = await axios.post(`http://127.0.0.1:8000/api/project/`, newEntry,{
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          });
+          console.log(response.data)
+          getAllProjects();
+        } catch (error) {
+          console.log(error.response.data);
+        }
+      };
+
+
+
       async function getProjectExpenses(projectid){
         try {
           let response = await axios.get(`http://127.0.0.1:8000/api/project/${projectid}/expense/all`, {
@@ -56,7 +76,7 @@ const LandingPage = (props) => {
         }
       };
 
-      async function AddExpense(newEntry){
+      async function addExpense(newEntry){
         try {
           let response = await axios.post(`http://127.0.0.1:8000/api/project/${saveid}/expense/all`,newEntry, {
             headers: {
@@ -64,7 +84,7 @@ const LandingPage = (props) => {
 
             },
           } );
-          
+          getAllProjects();
         } catch (error) {
           console.log(error.response.data);
         }
@@ -80,20 +100,24 @@ const LandingPage = (props) => {
       <div>
         <Sidebar project = {project} projectid = {getProjectExpenses} />
         <ExpenseList expense = {expense}/>
-        
-        
-
-
-        {displayform ? <button onClick={()=>setDisplayForm(!displayform)}>Add </button>: <AddProject add = {AddExpense}/>}<br/>
-              {/* <button >Add New Card</button> */}
-
+        {displayform ? <button onClick={()=>setDisplayForm(!displayform)}>Add </button>: <AddExpenses addexpense = {addExpense} />}
+        This is project
+        <AddProject addproject = {addProject}/>
 
       </div>
      );
 }
-// addExpense = {AddExpense}
+
  
 export default LandingPage;
+{/* <AddE add = {addExpense}/>}<br/> */}
+
+
+
+
+
+
+
 
     // async function getAllExpenses(){
     //     let response = await axios.get(`http://127.0.0.1:8000/api/bi/`)

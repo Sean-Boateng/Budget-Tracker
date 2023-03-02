@@ -2,35 +2,30 @@ import React, { useState, useEffect } from 'react';
 
 
 const AddProject = (props)=>{
-    const[title,setTitle]= useState('')
-    const[amount,setAmount]= useState('')
-    const[category,setCategory]= useState('')
-
-
-    
+    const[name,setName]= useState('')
+    const[budget,setBudget]= useState('')
+  
 
     function handleSubmit(project){
-        project.preventDefault();
+        // project.preventDefault();
         let newEntry={
-            title: title,
-            amount:amount,
-            category:category
+            name: name,
+            budget:budget,
+            
         };
         
         console.log(newEntry)
-        props.add(newEntry)
+        props.addproject(newEntry)
 
     
     }
     return(
         <form onSubmit={handleSubmit}>
-            <label style={{paddingBottom:'1rem' ,paddingRight:'1em'}}>Title </label>
-            <input type='string' value ={title} onChange={(event)=>setTitle(event.target.value )}/><br/>
-            <label style={{paddingBottom:'1rem' ,paddingRight:'1em'}}>Amount </label>
-            <input type='string' value ={amount} onChange={(event)=>setAmount(event.target.value )}/><br/>
-            <label style={{paddingBottom:'1rem' ,paddingRight:'1em'}}>Category</label>
-            <input type='int' value ={category} onChange={(event)=>setCategory(event.target.value )}/><br/>
-            <button>Add</button>
+            <label style={{paddingBottom:'1rem' ,paddingRight:'1em'}}>Name </label>
+            <input type='string' value ={name} onChange={(event)=>setName(event.target.value )}/><br/>
+            <label style={{paddingBottom:'1rem' ,paddingRight:'1em'}}>Budget </label>
+            <input type='string' value ={budget} onChange={(event)=>setBudget(event.target.value )}/><br/>
+            <button >Add</button>
         </form>
     )
 }
