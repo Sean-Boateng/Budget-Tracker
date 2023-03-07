@@ -6,16 +6,20 @@ import { useNavigate } from 'react-router-dom';
 import Sidebar from '../SideBar/sidebar';
 import ExpenseList from '../Expenses/ExpenseList';
 import AddExpenses from '../Expenses/AddExpenses';
-import AddProject from '../Add Project/AddProject';
+import AddProject from '../Project/AddProject';
+import "./landingpage.css"
+import DisplayBudget from '../Project/DisplayBudget';
 
 
 
 const LandingPage = (props) => {
     const [project,setProject] = useState([])
-    // const [projectid,setProjectid] = useState('')
     const [expense,setExpense] = useState([])
     const [saveid,setSaveid] = useState([])
-    const [displayform,setDisplayForm] = useState([])
+    const [expenseform,setExpenseForm] = useState([])   
+    const [projectform,setProjectForm] = useState([])   
+    const [pbudget,setPBudget] = useState([])    
+    const [sum, setSum] = useState([])
     const [user, token] = useAuth();
     const navigate = useNavigate()
     
@@ -32,7 +36,7 @@ const LandingPage = (props) => {
 
       async function getAllProjects (props){
         try {
-          let response = await axios.get("http://127.0.0.1:8000/api/project/", {
+          let response = await axios.get(`http://127.0.0.1:8000/api/project/all`, {
             headers: {
               Authorization: "Bearer " + token,
             },
@@ -43,6 +47,22 @@ const LandingPage = (props) => {
           console.log(error.response.data);
         }
       };
+
+      // async function getThisProject (){
+      //   try {
+      //     let response = await axios.get(`http://127.0.0.1:8000/api/project/${saveid}`, {
+      //       headers: {
+      //         Authorization: "Bearer " + token,
+      //       },
+      //     });
+      //     setPBudget(response.data);
+      //     console.log(response.data)
+      //   } catch (error) {
+      //     console.log(error.response.data);
+      //   }
+      // };
+
+      
 
 
 
@@ -61,20 +81,43 @@ const LandingPage = (props) => {
       };
 
 
-
       async function getProjectExpenses(projectid){
         try {
           let response = await axios.get(`http://127.0.0.1:8000/api/project/${projectid}/expense/all`, {
             headers: {
               Authorization: "Bearer " + token,
             },
+            
           });
+          
           setExpense(response.data);
+          console.log(response.data)
           setSaveid(projectid)
-        } catch (error) {
+          let newresponse = (response.data).map(function(el){
+            return{
+              amount:el.amount
+            } 
+          })
+          console.log(newresponse);
+          // getThisProject();
+          sumOfExpenses(newresponse);
+          
+        } 
+        catch (error) {
           console.log(error.response.data);
         }
       };
+
+
+      function sumOfExpenses(entry){
+        let total = 0;
+        for (let i = 0; i < entry.length; i++) {
+          total += entry[i].amount
+        }
+        console.log(total)
+        setSum(total)
+      }
+
 
       async function addExpense(newEntry){
         try {
@@ -90,30 +133,47 @@ const LandingPage = (props) => {
         }
         
       };
-      
-     
-
-
-
+  
 
     return ( 
       <div>
-        <Sidebar project = {project} projectid = {getProjectExpenses} />
-        <ExpenseList expense = {expense}/>
-        {displayform ? <button onClick={()=>setDisplayForm(!displayform)}>Add </button>: <AddExpenses addexpense = {addExpense} />}
-        This is project
-        <AddProject addproject = {addProject}/>
+        <div className=' row page pagepic hover'>
 
+          <div className='col-4'>
+            <Sidebar project = {project} projectid = {getProjectExpenses} idnumber = {setPBudget}/>
+          </div>
+
+          <div>
+          <DisplayBudget projectinfo = {pbudget} /> 
+        </div>
+
+          <div className='col-8'>
+            <ExpenseList expense = {expense}/>
+          </div>
+
+        </div>
+
+        {/* <div>
+        {expenseform ? <button onClick={()=>setExpenseForm(!expenseform)}>Add Expense</button>: <AddExpenses addexpense = {addExpense} />}<br/>
+        </div>
+        <div>
+        {projectform ? <button onClick={()=>setProjectForm(!projectform)}>Add Project</button>: <AddProject addproject = {addProject}/>}
+        </div>
+
+        <div>
+        {sum}
+        </div> */}
+        
       </div>
      );
 }
 
  
 export default LandingPage;
-{/* <AddE add = {addExpense}/>}<br/> */}
 
 
 
+  
 
 
 
