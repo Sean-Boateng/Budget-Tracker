@@ -31,7 +31,7 @@ const LandingPage = (props) => {
     useEffect(() => {
         getAllProjects();
         getProjectExpenses();
-        
+        // getThisProject()
       }, [token])
 
       async function getAllProjects (props){
@@ -41,44 +41,47 @@ const LandingPage = (props) => {
               Authorization: "Bearer " + token,
             },
           });
+          
           setProject(response.data);
           console.log(response.data)
+          
+          
         } catch (error) {
           console.log(error.response.data);
         }
       };
 
-      // async function getThisProject (){
-      //   try {
-      //     let response = await axios.get(`http://127.0.0.1:8000/api/project/${saveid}`, {
-      //       headers: {
-      //         Authorization: "Bearer " + token,
-      //       },
-      //     });
-      //     setPBudget(response.data);
-      //     console.log(response.data)
-      //   } catch (error) {
-      //     console.log(error.response.data);
-      //   }
-      // };
+      // function mapProjects(){
+      //   let response = project.map(function(el){
+      //     return{
+      //       id:el.id,
+      //       name:el.name,
+      //       budget:el.budget
+      //     }
+      //   })
+      //   setPBudget(response.data)
+      //   console.log(response.data)
+      // }
+
+  
 
       
 
 
 
-      async function addProject (newEntry){
-        try {
-          let response = await axios.post(`http://127.0.0.1:8000/api/project/`, newEntry,{
-            headers: {
-              Authorization: "Bearer " + token,
-            },
-          });
-          console.log(response.data)
-          getAllProjects();
-        } catch (error) {
-          console.log(error.response.data);
-        }
-      };
+      // async function addProject (newEntry){
+      //   try {
+      //     let response = await axios.post(`http://127.0.0.1:8000/api/project/`, newEntry,{
+      //       headers: {
+      //         Authorization: "Bearer " + token,
+      //       },
+      //     });
+      //     console.log(response.data)
+      //     getAllProjects();
+      //   } catch (error) {
+      //     console.log(error.response.data);
+      //   }
+      // };
 
 
       async function getProjectExpenses(projectid){
@@ -93,13 +96,13 @@ const LandingPage = (props) => {
           setExpense(response.data);
           console.log(response.data)
           setSaveid(projectid)
+          
           let newresponse = (response.data).map(function(el){
             return{
               amount:el.amount
             } 
           })
           console.log(newresponse);
-          // getThisProject();
           sumOfExpenses(newresponse);
           
         } 
@@ -119,20 +122,20 @@ const LandingPage = (props) => {
       }
 
 
-      async function addExpense(newEntry){
-        try {
-          let response = await axios.post(`http://127.0.0.1:8000/api/project/${saveid}/expense/all`,newEntry, {
-            headers: {
-              Authorization: "Bearer " + token,
+      // async function addExpense(newEntry){
+      //   try {
+      //     let response = await axios.post(`http://127.0.0.1:8000/api/project/${saveid}/expense/all`,newEntry, {
+      //       headers: {
+      //         Authorization: "Bearer " + token,
 
-            },
-          } );
-          getAllProjects();
-        } catch (error) {
-          console.log(error.response.data);
-        }
+      //       },
+      //     } );
+      //     getAllProjects();
+      //   } catch (error) {
+      //     console.log(error.response.data);
+      //   }
         
-      };
+      // };
   
 
     return ( 
@@ -140,14 +143,15 @@ const LandingPage = (props) => {
         <div className=' row page pagepic hover'>
 
           <div className='col-4'>
-            <Sidebar project = {project} projectid = {getProjectExpenses} idnumber = {setPBudget}/>
+            <Sidebar project = {project} projectid = {getProjectExpenses} budget = {setPBudget}/>
+            {console.log(pbudget)}
           </div>
-
-          <div>
-          <DisplayBudget projectinfo = {pbudget} /> 
+          
+          <div className='col-8'>
+          <DisplayBudget budgetinfo = {pbudget} /> 
         </div>
 
-          <div className='col-8'>
+          <div >
             <ExpenseList expense = {expense}/>
           </div>
 

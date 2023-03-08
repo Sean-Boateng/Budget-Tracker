@@ -13,7 +13,7 @@ const Sidebar = (props) => {
                 <tbody>
                     {props.project.map((el)=>{
                         return(
-                            <tr onClick={()=>{props.projectid(el.id)}}>
+                            <tr onClick={()=>{props.projectid(el.id); props.budget(el.budget)}}>
                                 <td>                                
                                     {el.id} {el.name}                                                         
                                 </td>
