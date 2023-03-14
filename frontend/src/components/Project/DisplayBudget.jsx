@@ -2,7 +2,7 @@ const DisplayBudget = (props) => {
 
     return ( 
         <div>
-           {props.budgetinfo}
+           ${props.budgetinfo}
         </div>
      );
 }

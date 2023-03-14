@@ -12,6 +12,7 @@ import DisplayBudget from '../Project/DisplayBudget';
 
 
 
+
 const LandingPage = (props) => {
     const [project,setProject] = useState([])
     const [expense,setExpense] = useState([])
@@ -20,6 +21,7 @@ const LandingPage = (props) => {
     const [projectform,setProjectForm] = useState([])   
     const [pbudget,setPBudget] = useState([])    
     const [sum, setSum] = useState([])
+    const [deleteid, setDeleteId] = useState([])
     const [user, token] = useAuth();
     const navigate = useNavigate()
     
@@ -31,7 +33,6 @@ const LandingPage = (props) => {
     useEffect(() => {
         getAllProjects();
         getProjectExpenses();
-        // getThisProject()
       }, [token])
 
       async function getAllProjects (props){
@@ -51,6 +52,7 @@ const LandingPage = (props) => {
         }
       };
 
+
       // function mapProjects(){
       //   let response = project.map(function(el){
       //     return{
@@ -63,25 +65,40 @@ const LandingPage = (props) => {
       //   console.log(response.data)
       // }
 
-  
 
-      
+      async function addProject (newEntry){
+        try {
+          let response = await axios.post(`http://127.0.0.1:8000/api/project/all`, newEntry,{
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          });
+          console.log(response.data)
+          getAllProjects();
+        } catch (error) {
+          console.log(error.response.data);
+        }
+      };
 
+      // async function deleteMember(id){
+      //   let response = await axios.delete(`http://127.0.0.1:8000/api/project/3/`);
+      //   if (response.status === 204){
+      //       return('Delete Successful')
+      //   } }
 
-
-      // async function addProject (newEntry){
-      //   try {
-      //     let response = await axios.post(`http://127.0.0.1:8000/api/project/`, newEntry,{
-      //       headers: {
-      //         Authorization: "Bearer " + token,
-      //       },
-      //     });
-      //     console.log(response.data)
-      //     getAllProjects();
-      //   } catch (error) {
-      //     console.log(error.response.data);
-      //   }
-      // };
+      async function deleteProject (){
+        try {
+          let response = await axios.delete(`http://127.0.0.1:8000/api/project/${deleteid}/`,{
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          });
+          console.log(response.data)
+          getAllProjects();
+        } catch (error) {
+          console.log(error.response.data);
+        }
+      };
 
 
       async function getProjectExpenses(projectid){
@@ -122,51 +139,57 @@ const LandingPage = (props) => {
       }
 
 
-      // async function addExpense(newEntry){
-      //   try {
-      //     let response = await axios.post(`http://127.0.0.1:8000/api/project/${saveid}/expense/all`,newEntry, {
-      //       headers: {
-      //         Authorization: "Bearer " + token,
+      async function addExpense(newEntry){
+        try {
+          let response = await axios.post(`http://127.0.0.1:8000/api/project/${saveid}/expense/all`,newEntry, {
+            headers: {
+              Authorization: "Bearer " + token,
 
-      //       },
-      //     } );
-      //     getAllProjects();
-      //   } catch (error) {
-      //     console.log(error.response.data);
-      //   }
+            },
+          } );
+          getAllProjects();
+        } catch (error) {
+          console.log(error.response.data);
+        }
         
-      // };
+      };
   
+
+
 
     return ( 
       <div>
         <div className=' row page pagepic hover'>
 
-          <div className='col-4'>
-            <Sidebar project = {project} projectid = {getProjectExpenses} budget = {setPBudget}/>
-            {console.log(pbudget)}
-          </div>
+            <div className='col-4'>
+              <Sidebar project = {project} projectid = {getProjectExpenses} deleteid = {setDeleteId} budget = {setPBudget}/>
+              {console.log(pbudget)}
+              {console.log(deleteid)}
+            </div>
           
-          <div className='col-8'>
-          <DisplayBudget budgetinfo = {pbudget} /> 
+            <div className='col-4'>
+              <DisplayBudget budgetinfo = {pbudget} /> 
+            </div>
+
+            <div className='col-4'>
+              ${sum}
+            </div>
+
+            <div >
+              <ExpenseList expense = {expense}/>
+            </div>
+
         </div>
+        ${pbudget - sum}
 
-          <div >
-            <ExpenseList expense = {expense}/>
-          </div>
-
-        </div>
-
-        {/* <div>
+        <div>
         {expenseform ? <button onClick={()=>setExpenseForm(!expenseform)}>Add Expense</button>: <AddExpenses addexpense = {addExpense} />}<br/>
         </div>
         <div>
         {projectform ? <button onClick={()=>setProjectForm(!projectform)}>Add Project</button>: <AddProject addproject = {addProject}/>}
         </div>
 
-        <div>
-        {sum}
-        </div> */}
+        <button onClick={deleteProject}>Delete</button>
         
       </div>
      );
