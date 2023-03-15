@@ -22,7 +22,7 @@ const ExpenseList = (props) => {
                     return(
                         <tr>
                         <td>{el.title.toUpperCase()}</td>
-                        <td>{el.amount}</td>
+                        <td>{el.amount.toLocaleString("en-US")}</td>
                         <td>{el.category.toUpperCase()}</td>                
                     </tr> 
                     )

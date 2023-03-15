@@ -16,6 +16,7 @@ import PrivateRoute from "./utils/PrivateRoute";
 import Budget from "./components/LandingPage/LandingPage";
 import LandingPage from "./components/LandingPage/LandingPage";
 import ExpenseList from "./components/Expenses/ExpenseList";
+import Sidebar from "./components/SideBar/sidebar";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/lpage" element={<LandingPage />} />
         <Route path="/explist" element={<ExpenseList/>} />
+        <Route path="/side" element={<Sidebar/>} />
       </Routes>
       <Footer />
     </div>

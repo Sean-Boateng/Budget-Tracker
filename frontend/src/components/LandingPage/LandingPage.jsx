@@ -32,7 +32,7 @@ const LandingPage = (props) => {
 
     useEffect(() => {
         getAllProjects();
-        getProjectExpenses();
+        // getProjectExpenses();
       }, [token])
 
       async function getAllProjects (props){
@@ -144,10 +144,9 @@ const LandingPage = (props) => {
           let response = await axios.post(`http://127.0.0.1:8000/api/project/${saveid}/expense/all`,newEntry, {
             headers: {
               Authorization: "Bearer " + token,
-
             },
           } );
-          getAllProjects();
+          getProjectExpenses(saveid);
         } catch (error) {
           console.log(error.response.data);
         }
@@ -159,38 +158,56 @@ const LandingPage = (props) => {
 
     return ( 
       <div>
+
+
+
         <div className=' row page pagepic hover'>
 
-            <div className='col-4'>
-              <Sidebar project = {project} projectid = {getProjectExpenses} deleteid = {setDeleteId} budget = {setPBudget}/>
-              {console.log(pbudget)}
-              {console.log(deleteid)}
-            </div>
-          
-            <div className='col-4'>
-              <DisplayBudget budgetinfo = {pbudget} /> 
-            </div>
+            <div className=' ' style={{marginBottom:'20px'}}>
+              <Sidebar project = {project} projectid = {getProjectExpenses} deleteid = {setDeleteId} budget = {setPBudget} />
+                {console.log(pbudget)}
+                {console.log(deleteid)}
+              </div>
+        </div> 
 
-            <div className='col-4'>
-              ${sum}
-            </div>
+        <div className=' row page pagepic hover' >
+              <div className='col-4'>
+              <div className='casing'>
+                <DisplayBudget budgetinfo = {pbudget.toLocaleString("en-US")} /> 
+              </div>
+              </div>
 
+              <div className='col-4'>
+                <div className='casing'>
+                  ${(pbudget - sum).toLocaleString("en-US")} Remaining
+                </div>
+              </div>
+
+              <div className='col-4'>
+                <div className=' casing'>
+                  ${sum.toLocaleString("en-US")} Spent
+                </div>
+              </div>
+        </div>
             <div >
               <ExpenseList expense = {expense}/>
             </div>
 
-        </div>
-        ${pbudget - sum}
+       
+        
 
         <div>
-        {expenseform ? <button onClick={()=>setExpenseForm(!expenseform)}>Add Expense</button>: <AddExpenses addexpense = {addExpense} />}<br/>
+        {expenseform ? <button onClick={()=>setExpenseForm(!expenseform)}>Add Expense</button>: <AddExpenses addexpense = {addExpense}/>}<br/>
         </div>
         <div>
         {projectform ? <button onClick={()=>setProjectForm(!projectform)}>Add Project</button>: <AddProject addproject = {addProject}/>}
         </div>
 
-        <button onClick={deleteProject}>Delete</button>
+        <button onClick={deleteProject}>Delete</button><br/>
         
+        
+
+
       </div>
      );
 }
