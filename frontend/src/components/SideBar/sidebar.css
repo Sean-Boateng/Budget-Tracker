@@ -19,21 +19,21 @@
   .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f1f1f1;
-    min-width: 160px;
+    background-color: #14213d;
+    min-width: 150px;
     overflow: auto;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
   }
   .dropdown-content section {
-    color: black;
+    color: rgb(255, 255, 255);
     padding: 12px 16px;
     text-decoration: none;
     display: block;
   }
   
   .dropdown section:hover {
-    background-color: #ddd;
+    background-color: #e5e5e5;
 }
   
   .show {display: block;}

@@ -23,7 +23,7 @@ const Sidebar = (props) => {
 
 
             <div class="dropdown">
-                <button onClick={myFunction} class="dropbtn btn btn-success">Projects</button>
+                <button onClick={myFunction} class="dropbtn btn btn-success" style={{backgroundColor:"#fca311"}}>Projects</button>
                 <div id="myDropdown" class="dropdown-content">
                 {props.project.map((el)=>{
                         return(

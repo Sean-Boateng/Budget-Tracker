@@ -1,7 +1,6 @@
 .casing{
-    border:3px solid black;
-    /* border-radius: 30% 30%; */
-    background-color: rgb(215, 218, 215);
+    border:1px solid #e5e5e5;
+    background-color: #e5e5e5;
     display: flex;
     padding-top: 30px;
     padding-bottom: 30px;

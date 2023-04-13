@@ -9,6 +9,7 @@ import AddExpenses from '../Expenses/AddExpenses';
 import AddProject from '../Project/AddProject';
 import "./landingpage.css"
 import DisplayBudget from '../Project/DisplayBudget';
+import CategoryChart from '../CategoryChart/categrorychart';
 
 
 
@@ -17,7 +18,7 @@ const LandingPage = (props) => {
     const [project,setProject] = useState([])
     const [expense,setExpense] = useState([])
     const [saveid,setSaveid] = useState([])
-    const [expenseform,setExpenseForm] = useState([])   
+    const [expenseform,setExpenseForm] = useState(2)   
     const [projectform,setProjectForm] = useState([])   
     const [pbudget,setPBudget] = useState([])    
     const [sum, setSum] = useState([])
@@ -129,6 +130,25 @@ const LandingPage = (props) => {
       };
 
 
+
+      async function addExpense(newEntry){
+        try {
+          let response = await axios.post(`http://127.0.0.1:8000/api/project/${saveid}/expense/all`,newEntry, {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+
+          } );
+          alert("New Expense Added")
+          getProjectExpenses(saveid);
+        } catch (error) {
+          console.log(error.response.data);
+          
+        }
+        
+      };
+
+
       function sumOfExpenses(entry){
         let total = 0;
         for (let i = 0; i < entry.length; i++) {
@@ -137,28 +157,13 @@ const LandingPage = (props) => {
         console.log(total)
         setSum(total)
       }
-
-
-      async function addExpense(newEntry){
-        try {
-          let response = await axios.post(`http://127.0.0.1:8000/api/project/${saveid}/expense/all`,newEntry, {
-            headers: {
-              Authorization: "Bearer " + token,
-            },
-          } );
-          getProjectExpenses(saveid);
-        } catch (error) {
-          console.log(error.response.data);
-        }
-        
-      };
   
 
 
 
     return ( 
       <div>
-
+        
 
 
         <div className=' row page pagepic hover'>
@@ -170,7 +175,7 @@ const LandingPage = (props) => {
               </div>
         </div> 
 
-        <div className=' row page pagepic hover' >
+        <div className=' row page pagepic hover' style={{marginBottom:"20px"}} >
               <div className='col-4'>
               <div className='casing'>
                 <DisplayBudget budgetinfo = {pbudget.toLocaleString("en-US")} /> 
@@ -189,24 +194,27 @@ const LandingPage = (props) => {
                 </div>
               </div>
         </div>
-            <div >
-              <ExpenseList expense = {expense}/>
-            </div>
 
        
         
+        <div className='row' style={{display:"flex", justifyContent:"space-evenly", marginBottom:"20px"}}>
+            <div className='col-4'>
+              {projectform ? <div style={{display:"flex", justifyContent:"center"}} onClick={()=>setProjectForm(!projectform)}>Add Project</div>: <AddProject addproject = {addProject}/>}
+            </div>
+
+            <div className='col-4'>
+              <AddExpenses addexpense = {addExpense} />
+            </div>
+
+            <div className='col-4' style={{display:"flex", justifyContent:"center"}} onClick={deleteProject}>Delete This Project</div><br/>
+        </div>
 
         <div>
-        {expenseform ? <button onClick={()=>setExpenseForm(!expenseform)}>Add Expense</button>: <AddExpenses addexpense = {addExpense}/>}<br/>
+          <ExpenseList expense = {expense}/>
         </div>
-        <div>
-        {projectform ? <button onClick={()=>setProjectForm(!projectform)}>Add Project</button>: <AddProject addproject = {addProject}/>}
-        </div>
-
-        <button onClick={deleteProject}>Delete</button><br/>
         
         
-
+{/* <CategoryChart expenses={expense}/> */}
 
       </div>
      );
@@ -217,7 +225,7 @@ export default LandingPage;
 
 
 
-  
+
 
 
 

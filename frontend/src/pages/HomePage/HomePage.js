@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 
 import axios from "axios";
+import LandingPage from "../../components/LandingPage/LandingPage";
 
 const HomePage = () => {
   // The "user" value from this Hook contains the decoded logged in user information (username, first name, id)
@@ -27,14 +28,18 @@ const HomePage = () => {
     fetchCars();
   }, [token]);
   return (
-    <div className="container">
-      <h1>Home Page for {user.username}!</h1>
-      {cars &&
-        cars.map((car) => (
-          <p key={car.id}>
-            {car.year} {car.model} {car.make}
-          </p>
-        ))}
+    <div>
+      <div className="container">
+        <h1>Budget for {user.username}!</h1>
+        {cars &&
+          cars.map((car) => (
+            <p key={car.id}>
+              {car.year} {car.model} {car.make}
+            </p>
+          ))}
+      </div>
+
+      <LandingPage/>
     </div>
   );
 };

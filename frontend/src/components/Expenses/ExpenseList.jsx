@@ -9,21 +9,21 @@ const ExpenseList = (props) => {
 
     return ( 
         
-        <table class="table table-striped">
+        <table class="table table-striped ">
             <thead>
                 <tr>
-                <th scope="col">Title</th>
-                <th scope="col">Amount</th>
-                <th scope="col">Category</th>
+                <th style={{textAlign:"center"}} scope="col-4">Title</th>
+                <th style={{textAlign:"center"}} scope="col-4">Amount</th>
+                <th style={{textAlign:"center"}} scope="col-4">Category</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody className='container'>
                 {props.expense.map((el)=>{
                     return(
                         <tr>
-                        <td>{el.title.toUpperCase()}</td>
-                        <td>{el.amount.toLocaleString("en-US")}</td>
-                        <td>{el.category.toUpperCase()}</td>                
+                        <td style={{textAlign:"center"}}>{el.title.toUpperCase()}</td>
+                        <td style={{textAlign:"center"}}>${el.amount.toLocaleString("en-US")}</td>
+                        <td style={{textAlign:"center"}}>{el.category.toUpperCase()}</td>                
                     </tr> 
                     )
                 })}

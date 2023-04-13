@@ -37,7 +37,7 @@ function App() {
         <Route path="/explist" element={<ExpenseList/>} />
         <Route path="/side" element={<Sidebar/>} />
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
