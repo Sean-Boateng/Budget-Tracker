@@ -22,7 +22,7 @@ const HomePage = () => {
         });
         setCars(response.data);
       } catch (error) {
-        console.log(error.response.data);
+        // console.log(error.response.data);
       }
     };
     fetchCars();
@@ -30,7 +30,7 @@ const HomePage = () => {
   return (
     <div>
       <div className="container">
-        <h1>Budget for {user.username}!</h1>
+        <h1>{user.username}'s Expense Tracker!</h1>
         {cars &&
           cars.map((car) => (
             <p key={car.id}>

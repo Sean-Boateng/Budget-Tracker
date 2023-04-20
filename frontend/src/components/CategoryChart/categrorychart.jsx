@@ -3,23 +3,157 @@ import {Chart} from "react-google-charts"
 
 
 const CategoryChart = ({expenses}) => {
+    console.log("expenses",expenses);
+
+    let onlyCategoies = expenses.filter(el=>el.category).map(el=>el.category)
+    console.log("Categroy",onlyCategoies)
+
+    
+
+    let onlyAmount = expenses.filter(el=>el.category).map(el=>el.amount)
+    console.log("Amount",onlyAmount)
 
 
-    let filteredproject = expenses.filter(el=>el.category == 'Food');
-    console.log("here",filteredproject)
+    
 
-     const data = [
-        ["Element", "Density", { role: "style" }],
-        ["Copper", 8.94, "#b87333"], // RGB value
-        ["Silver", 10.49, "silver"], // English color name
-        ["Gold", 19.3, "gold"],
-        ["Platinum", 21.45, "color: #e5e4e2"], // CSS-style declaration
-      ];
+    let amountUnderHousing = expenses.filter(el=>el.category==="Housing").map(el=>el.amount)
+    console.log("Amounts under Housing",amountUnderHousing)
+
+    let sumOfHousing = amountUnderHousing.reduce((a,b)=>{
+        return a+b;
+    },0);
+    console.log("sum amounts under Housing",sumOfHousing)
+
+
+    let amountUnderTransportation = expenses.filter(el=>el.category==="Transportation").map(el=>el.amount)
+    console.log("Amounts under Transformation",amountUnderTransportation)
+
+    let sumOfTransportation = amountUnderTransportation.reduce((a,b)=>{
+        return a+b;
+    },0);
+    console.log("sum amounts under Transformation",sumOfTransportation)
+
+
+    let amountUnderFood = expenses.filter(el=>el.category==="Food").map(el=>el.amount)
+    console.log("Amounts under Food",amountUnderFood)
+
+    let sumOfFood = amountUnderFood.reduce((a,b)=>{
+        return a+b;
+    },0);
+    console.log("sum amounts under Food",sumOfFood)
+
+
+    let amountUnderUtility = expenses.filter(el=>el.category==="Utility").map(el=>el.amount)
+    console.log("Amounts under Utility",amountUnderUtility)
+
+    let sumOfUtility = amountUnderUtility.reduce((a,b)=>{
+        return a+b;
+    },0);
+    console.log("sum amounts under Utility",sumOfUtility)
+
+
+    let amountUnderInsurance = expenses.filter(el=>el.category==="Insurance").map(el=>el.amount)
+    console.log("Amounts under Insurance",amountUnderInsurance)
+
+    let sumOfInsurance = amountUnderInsurance.reduce((a,b)=>{
+        return a+b;
+    },0);
+    console.log("sum amounts under Insurance",sumOfInsurance)
+
+
+    let amountUnderMedicalandHealthcare = expenses.filter(el=>el.category==="Medical & Healthcare").map(el=>el.amount)
+    console.log("Amounts under Food",amountUnderMedicalandHealthcare)
+
+    let sumOfMedicalandHealthcare = amountUnderMedicalandHealthcare.reduce((a,b)=>{
+        return a+b;
+    },0);
+    console.log("sum amounts under Medical and Healthcare",sumOfMedicalandHealthcare)
+
+
+    let amountUnderSavingInvestingDebt = expenses.filter(el=>el.category==="Saving, Investing, Debt Payments").map(el=>el.amount)
+    console.log("Amounts under Saving, Investing, Debt Payments",amountUnderSavingInvestingDebt)
+
+    let sumOfSavingInvestingDebt = amountUnderSavingInvestingDebt.reduce((a,b)=>{
+        return a+b;
+    },0);
+    console.log("sum amounts under Saving Investing Debt",sumOfSavingInvestingDebt)
+
+
+    let amountUnderPersonalSpending = expenses.filter(el=>el.category==="Personal Spending").map(el=>el.amount)
+    console.log("Amounts under Personal Spending",amountUnderPersonalSpending)
+
+    let sumOfPersonalSpending = amountUnderSavingInvestingDebt.reduce((a,b)=>{
+        return a+b;
+    },0);
+    console.log("sum amounts under Personal Spending",sumOfPersonalSpending)
+
+
+    let amountUnderEntertainment = expenses.filter(el=>el.category==="Entertainment").map(el=>el.amount)
+    console.log("Amounts under Entertainment",amountUnderEntertainment)
+
+    let sumOfEntertainment = amountUnderEntertainment.reduce((a,b)=>{
+        return a+b;
+    },0);
+    console.log("sum amounts under Entertainment",sumOfEntertainment)
+
+
+    let amountUnderMiscellaneous = expenses.filter(el=>el.category==="Miscellaneous").map(el=>el.amount)
+    console.log("Amounts under Miscellaneous",amountUnderMiscellaneous)
+
+    let sumOfMiscellaneous = amountUnderMiscellaneous.reduce((a,b)=>{
+        return a+b;
+    },0);
+    console.log("sum amounts under Miscellaneous",sumOfMiscellaneous)
+
+    
+
+
+
+    function generateDateForChart(){
+
+        // let newdata = unique.map(cat => {
+
+        //     return[cat, 10,"red"]
+        // })
+        // console.log("newdata", newdata)
+
+        const data = [
+            ["Category", "$$$", { role: "style" }],
+            ["Housing", sumOfHousing, "#8ac926"],
+            ["Transportation", sumOfTransportation,  "#8ac926"],
+            ["Food", sumOfFood,  "#8ac926"],
+            ["Utility", sumOfUtility,  "#8ac926"],
+            ["Insurance", sumOfInsurance,  "#8ac926"],
+            ["Medical & Healthcare", sumOfMedicalandHealthcare,  "#8ac926"],
+            ["Saving, Investing, Debt Payment", sumOfTransportation,  "#8ac926"],
+            ["Personal Spending", sumOfPersonalSpending,  "#8ac926"],
+            ["Entertainment", sumOfEntertainment,  "#8ac926"],
+            ["Miscellaneous", sumOfMiscellaneous,  "#8ac926"],
+            // ...newdata
+          ];
+          return data
+    }
+
+     
     return (
         <div>
-            <h1>Hello Chart</h1>
-            <Chart chartType="ColumnChart" width="100%" height="400px" data={data} />
+            <h1 style={{textAlign:"center", marginTop:"50px",color:"#fca311"}}>Category Chart</h1>
+            <h3 style={{textAlign:"center", marginTop:"30px",color:"black"}}>See how much miney you're putting where</h3>
+            <Chart chartType="ColumnChart" width="100%" height="400px" data={generateDateForChart()} />
         </div> );
 }
  
 export default CategoryChart;
+
+
+// Below is how to remove duplicated from a list
+//     uniq = [...new Set(array)];
+
+
+    // let filteredList2 = expenses.map(el=>el.category+ " " + el.amount)
+    // console.log("Category and Amount",filteredList2)
+
+
+
+    // let unique = [...new Set(onlyCategoies)];
+    // console.log("unique",unique)

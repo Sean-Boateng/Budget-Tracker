@@ -23,13 +23,13 @@ const Sidebar = (props) => {
 
 
             <div class="dropdown">
-                <button onClick={myFunction} class="dropbtn btn btn-success" style={{backgroundColor:"#fca311"}}>Projects</button>
+                <button onClick={myFunction} class="dropbtn btn btn-success" style={{backgroundColor:"#fca311", border:"#fca311"}}>Envelopes</button>
                 <div id="myDropdown" class="dropdown-content">
                 {props.project.map((el)=>{
                         return(
-                            <div onClick={()=>{props.projectid(el.id); props.budget(el.budget); props.deleteid(el.id)}}>
+                            <div onClick={()=>{props.projectid(el.id); props.budget(el.budget); props.deleteid(el.id); props.setbudgetname(el.name) }}>
                                 <section>                                
-                                    {el.id} {el.name}                                                         
+                                     {el.name}                                                         
                                 </section>
                             </div>
                         );

@@ -17,6 +17,8 @@ import Budget from "./components/LandingPage/LandingPage";
 import LandingPage from "./components/LandingPage/LandingPage";
 import ExpenseList from "./components/Expenses/ExpenseList";
 import Sidebar from "./components/SideBar/sidebar";
+import Commanddropdown from "./components/DropDownCategory/commanddropdown";
+import AddProject from "./components/Expenses/AddExpenses";
 
 function App() {
   return (
@@ -36,6 +38,8 @@ function App() {
         <Route path="/lpage" element={<LandingPage />} />
         <Route path="/explist" element={<ExpenseList/>} />
         <Route path="/side" element={<Sidebar/>} />
+        <Route path="/drop" element={<Commanddropdown/>} />
+        <Route path="/add" element={<AddProject/>} />
       </Routes>
       {/* <Footer /> */}
     </div>

@@ -21,6 +21,7 @@ const LandingPage = (props) => {
     const [expenseform,setExpenseForm] = useState(2)   
     const [projectform,setProjectForm] = useState([])   
     const [pbudget,setPBudget] = useState([])    
+    const [budgetname,setBudgetName] = useState([])    
     const [sum, setSum] = useState([])
     const [deleteid, setDeleteId] = useState([])
     const [user, token] = useAuth();
@@ -169,11 +170,15 @@ const LandingPage = (props) => {
         <div className=' row page pagepic hover'>
 
             <div className=' ' style={{marginBottom:'20px'}}>
-              <Sidebar project = {project} projectid = {getProjectExpenses} deleteid = {setDeleteId} budget = {setPBudget} />
+              <Sidebar project = {project} projectid = {getProjectExpenses} deleteid = {setDeleteId} budget = {setPBudget} setbudgetname = {setBudgetName} />
                 {console.log(pbudget)}
-                {console.log(deleteid)}
-              </div>
+                {console.log(deleteid)}  
+            </div>
         </div> 
+
+        <div style={{textAlign:"Center", marginTop:"20px", marginBottom:"20px", fontSize:"45px", color:"#fca311"}}>
+            {budgetname}
+          </div>
 
         <div className=' row page pagepic hover' style={{marginBottom:"20px"}} >
               <div className='col-4'>
@@ -199,14 +204,14 @@ const LandingPage = (props) => {
         
         <div className='row' style={{display:"flex", justifyContent:"space-evenly", marginBottom:"20px"}}>
             <div className='col-4'>
-              {projectform ? <div style={{display:"flex", justifyContent:"center"}} onClick={()=>setProjectForm(!projectform)}>Add Project</div>: <AddProject addproject = {addProject}/>}
+               <AddProject addproject = {addProject}/>
             </div>
 
             <div className='col-4'>
-              <AddExpenses addexpense = {addExpense} />
+              <AddExpenses addexpense = {addExpense} rerun = {getProjectExpenses} />
             </div>
 
-            <div className='col-4' style={{display:"flex", justifyContent:"center"}} onClick={deleteProject}>Delete This Project</div><br/>
+            <div className='col-4' style={{display:"flex", justifyContent:"center"}} onClick={deleteProject}>Delete This Envelope</div><br/>
         </div>
 
         <div>
@@ -214,7 +219,7 @@ const LandingPage = (props) => {
         </div>
         
         
-{/* <CategoryChart expenses={expense}/> */}
+        <CategoryChart expenses={expense}/>
 
       </div>
      );
