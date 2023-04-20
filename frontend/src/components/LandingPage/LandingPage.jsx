@@ -184,7 +184,7 @@ const LandingPage = (props) => {
 
         <div className=' row page pagepic hover' style={{marginBottom:"20px"}} >
               <div className='col-4'>
-              <div className='casing'>
+              <div className='casing' style={{ color:"white", backgroundColor:"#e5e5e5"}}>
                 <DisplayBudget budgetinfo = {pbudget.toLocaleString("en-US")} /> 
               </div>
               </div>
@@ -213,7 +213,7 @@ const LandingPage = (props) => {
               <AddExpenses addexpense = {addExpense} rerun = {getProjectExpenses} />
             </div>
 
-            <div className='col-6' style={{display:"flex", justifyContent:"center"}} onClick={deleteProject}>Delete This Envelope</div><br/>
+            <div className='col-6' style={{display:"flex", justifyContent:"center", color:"white"}} onClick={deleteProject}>Delete This Envelope</div><br/>
         </div>
 
         <div>

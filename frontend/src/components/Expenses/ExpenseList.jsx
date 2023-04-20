@@ -12,18 +12,18 @@ const ExpenseList = (props) => {
         <table class="table table-striped ">
             <thead>
                 <tr>
-                <th style={{textAlign:"center"}} scope="col-4">Title</th>
-                <th style={{textAlign:"center"}} scope="col-4">Amount</th>
-                <th style={{textAlign:"center"}} scope="col-4">Category</th>
+                <th style={{textAlign:"center", color:"white"}} scope="col-4">Title</th>
+                <th style={{textAlign:"center" , color:"white"}} scope="col-4">Amount</th>
+                <th style={{textAlign:"center" , color:"white"}} scope="col-4">Category</th>
                 </tr>
             </thead>
             <tbody className='container'>
                 {props.expense.map((el)=>{
                     return(
                         <tr>
-                        <td style={{textAlign:"center"}}>{el.title.toUpperCase()}</td>
-                        <td style={{textAlign:"center"}}>${el.amount.toLocaleString("en-US")}</td>
-                        <td style={{textAlign:"center"}}>{el.category.toUpperCase()}</td>                
+                        <td style={{textAlign:"center", color:"white", maxWidth:"120px"}}>{el.title.toUpperCase()}</td>
+                        <td style={{textAlign:"center", color:"white"}}>${el.amount.toLocaleString("en-US")}</td>
+                        <td style={{textAlign:"center", color:"white"}}>{el.category.toUpperCase()}</td>                
                     </tr> 
                     )
                 })}

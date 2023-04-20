@@ -28,7 +28,7 @@ const Sidebar = (props) => {
                 {props.project.map((el)=>{
                         return(
                             <div onClick={()=>{props.projectid(el.id); props.budget(el.budget); props.deleteid(el.id); props.setbudgetname(el.name) }}>
-                                <section>                                
+                                <section style={{background:"#8d99ae",marginTop:"5px", borderRadius:"5px"}}>                                
                                      {el.name}                                                         
                                 </section>
                             </div>

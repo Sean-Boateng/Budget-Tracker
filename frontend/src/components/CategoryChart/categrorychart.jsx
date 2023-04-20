@@ -119,16 +119,16 @@ const CategoryChart = ({expenses}) => {
 
         const data = [
             ["Category", "$$$", { role: "style" }],
-            ["Housing", sumOfHousing, "#8ac926"],
-            ["Transportation", sumOfTransportation,  "#8ac926"],
-            ["Food", sumOfFood,  "#8ac926"],
-            ["Utility", sumOfUtility,  "#8ac926"],
-            ["Insurance", sumOfInsurance,  "#8ac926"],
-            ["Medical & Healthcare", sumOfMedicalandHealthcare,  "#8ac926"],
-            ["Saving, Investing, Debt Payment", sumOfTransportation,  "#8ac926"],
-            ["Personal Spending", sumOfPersonalSpending,  "#8ac926"],
-            ["Entertainment", sumOfEntertainment,  "#8ac926"],
-            ["Miscellaneous", sumOfMiscellaneous,  "#8ac926"],
+            ["Housing", sumOfHousing, "#14213d"],
+            ["Transportation", sumOfTransportation,  "#14213d"],
+            ["Food", sumOfFood,  "#14213d"],
+            ["Utility", sumOfUtility,  "#14213d"],
+            ["Insurance", sumOfInsurance,  "#14213d"],
+            ["Medical & Healthcare", sumOfMedicalandHealthcare,  "#14213d"],
+            ["Saving, Investing, Debt Payment", sumOfTransportation,  "#14213d"],
+            ["Personal Spending", sumOfPersonalSpending,  "#14213d"],
+            ["Entertainment", sumOfEntertainment,  "#14213d"],
+            ["Miscellaneous", sumOfMiscellaneous,  "#14213d"],
             // ...newdata
           ];
           return data
@@ -136,10 +136,10 @@ const CategoryChart = ({expenses}) => {
 
      
     return (
-        <div>
+        <div style={{backgroundColor:"#14213d"}}>
             <h1 style={{textAlign:"center", marginTop:"50px",color:"#fca311"}}>Category Chart</h1>
-            <h3 style={{textAlign:"center", marginTop:"30px",color:"black"}}>See where your money's going</h3>
-            <Chart chartType="ColumnChart" width="100%" height="400px" data={generateDateForChart()} />
+            <h3 style={{textAlign:"center", marginTop:"30px",color:"white"}}>See where your money's going</h3>
+            <Chart  style={{backgroundColor:"#14213d"}} chartType="ColumnChart" width="100%" height="400px" data={generateDateForChart()} />
         </div> );
 }
  

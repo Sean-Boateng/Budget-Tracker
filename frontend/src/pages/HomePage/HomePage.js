@@ -30,7 +30,7 @@ const HomePage = () => {
   return (
     <div>
       <div className="container">
-        <h1>{user.username}'s Expense Tracker!</h1>
+        <h1 style={{color:"white"}}>{user.username}'s Expense Tracker!</h1>
         {cars &&
           cars.map((car) => (
             <p key={car.id}>
