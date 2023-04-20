@@ -138,7 +138,7 @@ const CategoryChart = ({expenses}) => {
     return (
         <div>
             <h1 style={{textAlign:"center", marginTop:"50px",color:"#fca311"}}>Category Chart</h1>
-            <h3 style={{textAlign:"center", marginTop:"30px",color:"black"}}>See how much miney you're putting where</h3>
+            <h3 style={{textAlign:"center", marginTop:"30px",color:"black"}}>See where your money's going</h3>
             <Chart chartType="ColumnChart" width="100%" height="400px" data={generateDateForChart()} />
         </div> );
 }

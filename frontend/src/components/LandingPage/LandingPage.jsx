@@ -169,11 +169,13 @@ const LandingPage = (props) => {
 
         <div className=' row page pagepic hover'>
 
-            <div className=' ' style={{marginBottom:'20px'}}>
+            <div className=' ' style={{marginBottom:'20px', display:"flex", }}>
               <Sidebar project = {project} projectid = {getProjectExpenses} deleteid = {setDeleteId} budget = {setPBudget} setbudgetname = {setBudgetName} />
                 {console.log(pbudget)}
-                {console.log(deleteid)}  
+                {console.log(deleteid)} 
+                <AddProject addproject = {addProject}/>
             </div>
+            
         </div> 
 
         <div style={{textAlign:"Center", marginTop:"20px", marginBottom:"20px", fontSize:"45px", color:"#fca311"}}>
@@ -202,16 +204,16 @@ const LandingPage = (props) => {
 
        
         
-        <div className='row' style={{display:"flex", justifyContent:"space-evenly", marginBottom:"20px"}}>
-            <div className='col-4'>
+        <div className='row' style={{display:"flex", justifyContent:"space-evenly", marginBottom:"30px", marginTop:"40px"}}>
+            {/* <div className='col-4'>
                <AddProject addproject = {addProject}/>
-            </div>
+            </div> */}
 
-            <div className='col-4'>
+            <div className='col-6'>
               <AddExpenses addexpense = {addExpense} rerun = {getProjectExpenses} />
             </div>
 
-            <div className='col-4' style={{display:"flex", justifyContent:"center"}} onClick={deleteProject}>Delete This Envelope</div><br/>
+            <div className='col-6' style={{display:"flex", justifyContent:"center"}} onClick={deleteProject}>Delete This Envelope</div><br/>
         </div>
 
         <div>

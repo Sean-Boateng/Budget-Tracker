@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Dropdown from '../DropDownCategory/Dropdown';
+
 
 
 const AddProject = (props)=>{
@@ -8,18 +8,7 @@ const AddProject = (props)=>{
     const[category,setCategory]= useState('')
     const[isopen,setIsOpen]= useState(false)
 
-
-    // const options = [
-    //     { value: 'utility', label: 'Utility' },
-    //     { value: 'transportation', label: 'Transportation' },
-    //     { value: 'savings', label: 'Savings' },
-    //     { value: 'food', label: 'Food' }
-    //   ]
-
-
-
     
-
     function handleSubmit(project){
         project.preventDefault();
         let newEntry={
@@ -35,13 +24,11 @@ const AddProject = (props)=>{
     }
     return(
 
-
-
         <div>
 
             {
                 isopen ? 
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} style={{marginLeft:"10px"}}>
                     <label style={{paddingBottom:'1rem' ,paddingRight:'1em'}}>Description </label>
                     <input type='string' for ={title} onChange={(event)=>setTitle(event.target.value )}/><br/>
                     <label style={{paddingBottom:'1rem' ,paddingRight:'1em'}}>Amount </label>
@@ -61,9 +48,9 @@ const AddProject = (props)=>{
                             <option>Miscellaneous</option>
 
                         </select><br/>
-                    <button class="btn btn-primary" style={{margin:"10px",backgroundColor:"#fca311"}} >Add</button>
-                    <button class="btn btn-primary" type="reset" value="Reset" style={{margin:"10px",backgroundColor:"#fca311"}}>Reset</button>
-                    <button class="btn btn-primary" onClick={() => setIsOpen(false)} style={{margin:"10px",backgroundColor:"#fca311"}}>Close</button>
+                    <button class="btn btn-primary" style={{margin:"10px",backgroundColor:"#fca311",border:"#fca311"}} >Add</button>
+                    <button class="btn btn-primary" type="reset" value="Reset" style={{margin:"10px",backgroundColor:"#fca311",border:"#fca311"}}>Reset</button>
+                    <button class="btn btn-primary" onClick={() => setIsOpen(false)} style={{margin:"10px",backgroundColor:"#14213d", border:"#14213d"}}>Close</button>
                     
                 </form>
                 :
@@ -77,32 +64,8 @@ const AddProject = (props)=>{
         </div>
 
 
-       
-
-
-
     )
 }
 
 export default AddProject;
 
-// {
-//     isopen ? 
-//     <form onSubmit={handleSubmit}>
-//         <label style={{paddingBottom:'1rem' ,paddingRight:'1em'}}>Title </label>
-//         <input type='string' value ={title} onChange={(event)=>setTitle(event.target.value )}/><br/>
-//         <label style={{paddingBottom:'1rem' ,paddingRight:'1em'}}>Amount </label>
-//         <input type='int' value ={amount} onChange={(event)=>setAmount(event.target.value )}/><br/>
-//         <label style={{paddingBottom:'1rem' ,paddingRight:'1em'}}>Category</label>
-//         <input type='string' value ={category} onChange={(event)=>setCategory(event.target.value )}/><br/>
-//         <button>Add</button>
-//         <button onClick={() => setIsOpen(false)}>Done</button>
-//     </form>
-//     :
-//     <button type='submit' onClick={() => setIsOpen(true)}>Add Expense</button>
-// }
-
-
-    
-    
-//     {console.log(isopen)}
