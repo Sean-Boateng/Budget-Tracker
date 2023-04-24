@@ -10,6 +10,8 @@ import AddProject from '../Project/AddProject';
 import "./landingpage.css"
 import DisplayBudget from '../Project/DisplayBudget';
 import CategoryChart from '../CategoryChart/categrorychart';
+import Navbar from '../NavBar/NavBar';
+
 
 
 
@@ -26,6 +28,8 @@ const LandingPage = (props) => {
     const [deleteid, setDeleteId] = useState([])
     const [user, token] = useAuth();
     const navigate = useNavigate()
+
+  
     
 
    
@@ -54,6 +58,7 @@ const LandingPage = (props) => {
         }
       };
 
+      
 
       // function mapProjects(){
       //   let response = project.map(function(el){
@@ -112,7 +117,7 @@ const LandingPage = (props) => {
             
           });
           
-          setExpense(response.data);
+          setExpense((response.data).reverse());
           console.log(response.data)
           setSaveid(projectid)
           
@@ -168,13 +173,18 @@ const LandingPage = (props) => {
 
 
         <div className=' row page pagepic hover'>
-
-            <div className=' ' style={{marginBottom:'20px', display:"flex", }}>
-              <Sidebar project = {project} projectid = {getProjectExpenses} deleteid = {setDeleteId} budget = {setPBudget} setbudgetname = {setBudgetName} />
-                {console.log(pbudget)}
-                {console.log(deleteid)} 
-                <AddProject addproject = {addProject}/>
-            </div>
+          <div className='navcss'>
+              <div className=' ' style={{marginBottom:'20px', display:"flex", }}>
+                <Sidebar project = {project} projectid = {getProjectExpenses} deleteid = {setDeleteId} budget = {setPBudget} setbudgetname = {setBudgetName} />
+                  {console.log(pbudget)}
+                  {console.log(deleteid)} 
+                <AddProject addproject = {addProject}/> 
+              </div>
+              <h1 style={{color:"white"}}>{user.username}'s Expense Tracker!</h1>
+              <div>
+                <Navbar/>
+              </div>
+          </div>
             
         </div> 
 

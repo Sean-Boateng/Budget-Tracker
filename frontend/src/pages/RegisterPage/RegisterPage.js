@@ -19,49 +19,54 @@ const RegisterPage = () => {
   return (
     <div className="container">
       <form className="form" onSubmit={handleSubmit}>
-        <label>
+        <label style={{ color:"white"}}>
           Username:{" "}
           <input
             type="text"
             name="username"
             value={formData.username}
             onChange={handleInputChange}
+            style={{backgroundColor:"white", color:"black"}}
           />
         </label>
-        <label>
+        <label style={{ color:"white"}}>
           First Name:{" "}
           <input
             type="text"
             name="firstName"
             value={formData.firstName}
             onChange={handleInputChange}
+            style={{backgroundColor:"white", color:"black"}}
           />
         </label>
-        <label>
+        <label style={{ color:"white"}}>
           Last Name:{" "}
           <input
             type="text"
             name="lastName"
             value={formData.lastName}
             onChange={handleInputChange}
+            style={{backgroundColor:"white", color:"black"}}
           />
         </label>
-        <label>
+        <label style={{ color:"white"}}>
           Email:{" "}
           <input
             type="text"
             name="email"
             value={formData.email}
             onChange={handleInputChange}
+            style={{backgroundColor:"white", color:"black"}}
           />
         </label>
-        <label>
+        <label style={{ color:"white"}}>
           Password:{" "}
           <input
             type="text"
             name="password"
             value={formData.password}
             onChange={handleInputChange}
+            style={{backgroundColor:"white", color:"black"}}
           />
         </label>
         <p style={{ fontSize: "12px" }}>

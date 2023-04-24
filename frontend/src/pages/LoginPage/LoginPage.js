@@ -21,22 +21,24 @@ const LoginPage = () => {
   return (
     <div className="container">
       <form className="form" onSubmit={handleSubmit}>
-        <label>
+        <label style={{ color:"white"}}>
           Username:{" "}
           <input
             type="text"
             name="username"
             value={formData.username}
             onChange={handleInputChange}
+            style={{backgroundColor:"white", color:"black"}}
           />
         </label>
-        <label>
+        <label style={{ color:"white"}}>
           Password:{" "}
           <input
             type="text"
             name="password"
             value={formData.password}
             onChange={handleInputChange}
+            style={{backgroundColor:"white", color:"black"}}
           />
         </label>
         {isServerError ? (

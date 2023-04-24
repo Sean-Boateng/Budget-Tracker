@@ -37,6 +37,7 @@ function App() {
         <Route path="/lpage" element={<LandingPage />} />
         <Route path="/explist" element={<ExpenseList/>} />
         <Route path="/side" element={<Sidebar/>} />
+        
         <Route path="/add" element={<AddProject/>} />
       </Routes>
       {/* <Footer /> */}

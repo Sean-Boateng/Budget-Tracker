@@ -10,3 +10,8 @@
 *{
     background-color: #14213d;
 }
+
+.navcss{
+    display: flex;
+    justify-content: space-between;
+}
